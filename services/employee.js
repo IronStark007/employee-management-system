@@ -1,4 +1,4 @@
-const client = require('../postgres')
+const client = require('../db')
 
 const selectAllQuery = (callback) => {
     client.query('select * from employee;', (err, res) => {
