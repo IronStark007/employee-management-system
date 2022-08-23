@@ -3,10 +3,13 @@ const client = require('../db')
 const selectAllQuery = (callback) => {
     client.query('select * from employee;', (err, res) => {
         if (err) {
+            console.error('error in select all query '+err)
             callback(err);
         } else {
+            console.log('fetching the rows')
             callback(res.rows);
         }
+        console.log('closing the db connection')
         client.end();
     })
 }

@@ -2,10 +2,13 @@ const dbHandler = require('../services/employee')
 
 
 const getAllEmployees = (req, res) => {
+    console.log("getting all employee");
     dbHandler.selectAllQuery((result) => {
         if (result instanceof Error) {
+            console.error(result.detail)
             res.status(500).send({ "error": result.detail })
         } else {
+            console.log('showing results')
             res.send(result);
         }
     })

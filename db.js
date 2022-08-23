@@ -8,12 +8,10 @@ const client = new Client({
 })
 client.connect(err => {
     if (err) {
-        console.log(err);
+        console.error(err);
     } else {
-        console.log('Connected to database!')
+        console.log('Connected to database')
     }
 })
-
-// Error: connect ECONNREFUSED 127.0.0.1:5432
 
 module.exports = client;

@@ -12,5 +12,5 @@ app.use(process.env.EMPLOYEE_PREFIX_URL, employee);
 let port = process.env.PORT || 8000;
 
 app.listen(port,() => {
-    console.log('Connected to server');
+    console.log(`Connected to server on port: ${port}`);
 });
