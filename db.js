@@ -1,8 +1,7 @@
 const { Client } = require('pg')
 
-const DATABASE_URL = process.env.DATABASE_URL;
 const client = new Client({
-    DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false,
     }
@@ -15,5 +14,6 @@ client.connect(err => {
     }
 })
 
+// Error: connect ECONNREFUSED 127.0.0.1:5432
 
 module.exports = client;

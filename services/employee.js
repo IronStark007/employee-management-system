@@ -7,6 +7,7 @@ const selectAllQuery = (callback) => {
         } else {
             callback(res.rows);
         }
+        client.end();
     })
 }
 
@@ -17,6 +18,7 @@ const selectOneQuery = (id, callback) => {
         } else {
             callback(res.rows);
         }
+        client.end();
     })
 }
 
@@ -25,6 +27,7 @@ const insertValueQuery = (data, callback) => {
         if (err) {
             callback(err);
         } else { callback(res.rows); }
+        client.end();
     });
 }
 
@@ -33,6 +36,7 @@ const updateValueQuery = (data, callback) => {
         if (err) {
             callback(err);
         } else { callback(res); }
+        client.end();
     })
 }
 
@@ -41,6 +45,7 @@ const deleteValueQuery = (id, callback) => {
         if (err) {
             callback(err);
         } else { callback(res); }
+        client.end();
     })
 }
 

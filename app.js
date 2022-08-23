@@ -8,9 +8,9 @@ const employee = require('./routes/employee')
 app.use(express.json())
 app.use(process.env.EMPLOYEE_PREFIX_URL, employee);
 
-let host = process.env.SERVER_HOST;
-let port = process.env.SERVER_PORT;
 
-app.listen((host,port), () => {
+let port = process.env.SERVER_PORT || 8000;
+
+app.listen(port,() => {
     console.log('Connected to server');
 });
