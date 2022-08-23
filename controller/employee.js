@@ -4,7 +4,7 @@ const dbHandler = require('../services/employee')
 const getAllEmployees = (req, res) => {
     dbHandler.selectAllQuery((result) => {
         if (result instanceof Error) {
-            res.status(500).send({ "error": result.sqlMessage })
+            res.status(500).send({ "error": result.detail })
         } else {
             res.send(result);
         }
@@ -14,7 +14,7 @@ const getAllEmployees = (req, res) => {
 const getOneEmployee = (req, res) => {
     dbHandler.selectOneQuery((req.params.id), (result) => {
         if (result instanceof Error) {
-            res.status(500).send({ "error": result.sqlMessage })
+            res.status(500).send({ "error": result.detail })
         } else if (result.length === 0) {
             res.status(500).send({ "error": `Employee with the id '${req.params.id}' does not exist` })
         } else {
@@ -26,10 +26,10 @@ const getOneEmployee = (req, res) => {
 const createEmployee = (req, res) => {
     dbHandler.insertValueQuery((req.body), (result) => {
         if (result instanceof Error) {
-            if (result.code === 'ER_DUP_ENTRY'){
+            if (result.code === '23505'){
                 res.status(500).send({ "error": `Employee with the id '${req.body.id}' already exists` })
             }else{
-            res.status(500).send({ "error": result.sqlMessage })
+            res.status(500).send({ "error": result.detail })
         }    
         } else {
             res.status(201).send({ "message": `Employee with the id '${req.body.id}' created` })
@@ -40,8 +40,8 @@ const createEmployee = (req, res) => {
 const updateEmployee = (req, res) => {
     dbHandler.updateValueQuery((req.body), (result) => {
         if (result instanceof Error) {
-            res.status(500).send({ "error": result.sqlMessage })
-        }else if (result.affectedRows === 0) {
+            res.status(500).send({ "error": result.detail })
+        }else if (result.rowCount === 0) {
             res.status(500).send({ "error": `Employee with the id '${req.body.id}' does not exist` })
         } 
         else {
@@ -53,9 +53,9 @@ const updateEmployee = (req, res) => {
 const deleteEmployee = (req, res) => {
     dbHandler.deleteValueQuery((req.params.id), (result) => {
         if (result instanceof Error) {
-            res.status(500).send({ "error": result.sqlMessage })
+            res.status(500).send({ "error": result.detail })
         }
-        else if (result.affectedRows === 0) {
+        else if (result.rowCount === 0) {
             res.status(500).send({ "error": `Employee with the id '${req.params.id}' does not exist` })
         } else {
             res.send({ "message": `Employee with the id '${req.params.id}' deleted` })

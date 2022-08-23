@@ -1,46 +1,46 @@
-const connection = require('../db')
+const client = require('../postgres')
 
 const selectAllQuery = (callback) => {
-    connection.query("select * from employee;", (err, rows) => {
+    client.query('select * from employee;', (err, res) => {
         if (err) {
             callback(err);
         } else {
-            callback(rows);
+            callback(res.rows);
         }
     })
 }
 
 const selectOneQuery = (id, callback) => {
-    connection.query(`select * from employee where id='${id}';`, (err, rows) => {
+    client.query(`select * from employee where id='${id}';`, (err, res) => {
         if (err) {
             callback(err);
         } else {
-            callback(rows);
+            callback(res.rows);
         }
     })
 }
 
 const insertValueQuery = (data, callback) => {
-    connection.query(`insert into employee values ('${data.id}','${data.fName}','${data.lName}',${data.salary},'${data.department}','${data.joiningDate}');`, (err, rows) => {
+    client.query(`insert into employee values ('${data.id}','${data.fName}','${data.lName}',${data.salary},'${data.department}','${data.joiningDate}');`, (err, res) => {
         if (err) {
             callback(err);
-        } else { callback(rows); }
+        } else { callback(res.rows); }
     });
 }
 
 const updateValueQuery = (data, callback) => {
-    connection.query(`update employee set lName='${data.lName}', salary=${data.salary}, department='${data.department}', joiningDate='${data.joiningDate}' where id='${data.id}';`, (err, rows) => {
+    client.query(`update employee set lName='${data.lName}', salary=${data.salary}, department='${data.department}', joiningDate='${data.joiningDate}' where id='${data.id}';`, (err, res) => {
         if (err) {
             callback(err);
-        } else { callback(rows); }
+        } else { callback(res); }
     })
 }
 
 const deleteValueQuery = (id, callback) => {
-    connection.query(`delete from employee where id='${id}';`, (err, rows) => {
+    client.query(`delete from employee where id='${id}';`, (err, res) => {
         if (err) {
             callback(err);
-        } else { callback(rows); }
+        } else { callback(res); }
     })
 }
 

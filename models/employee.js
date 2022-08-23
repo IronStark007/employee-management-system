@@ -10,3 +10,12 @@ var schema = joi.object().keys({
 })
 
 module.exports = schema
+
+// Schema used
+// CREATE TABLE employee (
+//     id serial PRIMARY KEY,
+//     fName VARCHAR (266) NOT NULL,
+//     lName VARCHAR (266) NOT NULL,
+//     salary INT NOT NULL,
+//     department VARCHAR (266) NOT NULL,  
+//     joiningDate DATE NOT NULL);

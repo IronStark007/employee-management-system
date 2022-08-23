@@ -1,18 +1,21 @@
-const mysql = require('mysql');
+const { Client } = require('pg')
 
-const connection = mysql.createConnection({
-    host: process.env.DATABASE_HOST,
+const client = new Client({
     user: process.env.DATABASE_USERNAME,
-    password: process.env.DATABASE_PASSWORD,
+    host: process.env.DATABASE_HOST,
     database: process.env.DATABASE_NAME,
-});
-
-connection.connect((err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log("Connected to db!");
+    password: process.env.DATABASE_PASSWORD,
+    port: process.env.DATABASE_PORT,
+    ssl:process.env.SSL_MODE
+})
+client.connect(err=>{
+    if (err){
+        console.log("erroro connecting to databse")
+        console.log(err);
+    }else {
+        console.log("Connected to database!")
     }
-});
+})
 
-module.exports = connection;
+
+module.exports = client;
