@@ -1,11 +1,16 @@
 const { Client } = require('pg')
 
-
-const client = new Client(process.env.DATABASE_URL)
-client.connect(err=>{
-    if (err){
+const DATABASE_URL = process.env.DATABASE_URL;
+const client = new Client({
+    DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+    }
+})
+client.connect(err => {
+    if (err) {
         console.log(err);
-    }else {
+    } else {
         console.log('Connected to database!')
     }
 })

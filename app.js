@@ -12,5 +12,5 @@ let host = process.env.SERVER_HOST;
 let port = process.env.SERVER_PORT;
 
 app.listen((host,port), () => {
-    console.log(`Connected to server at ${host}:${port}`);
+    console.log('Connected to server');
 });
