@@ -11,7 +11,7 @@ client.connect(err=>{
     if (err){
         console.log(err);
     }else {
-        console.log("Connected to database!")
+        console.log(`Connected to database! ${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}`)
     }
 })
 
