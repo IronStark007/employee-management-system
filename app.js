@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(process.env.EMPLOYEE_PREFIX_URL, employee);
 
 
-let port = process.env.SERVER_PORT || 8000;
+let port = process.env.PORT || 8000;
 
 app.listen(port,() => {
     console.log('Connected to server');
