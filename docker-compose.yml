@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  app:
+    image: employee-system
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_HOST: db
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: employee
+      DATABASE_PORT: 5432
+      EMPLOYEE_PREFIX_URL: /api/v1
+    command: npm start
+
+  db:
+    image: postgres:11.2-alpine
+    ports:
+      - "5441:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: employee
+
+volumes:
+  db_data:

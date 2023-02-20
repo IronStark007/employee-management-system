@@ -35,9 +35,9 @@ const insertValueQuery = (data, callback) => {
   );
 };
 
-const updateValueQuery = (data, callback) => {
+const updateValueQuery = (id, data, callback) => {
   pool.query(
-    `update employee set lName='${data.lName}', salary=${data.salary}, department='${data.department}', joiningDate='${data.joiningDate}' where id='${data.id}';`,
+    `update employee set lName='${data.lName}', salary=${data.salary}, department='${data.department}', joiningDate='${data.joiningDate}' where id='${id}';`,
     (err, res) => {
       if (err) {
         callback(err);
