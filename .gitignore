@@ -1,3 +1,4 @@
 # local development
 .env
+pgdata/
 node_modules/
