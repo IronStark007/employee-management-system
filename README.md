@@ -6,7 +6,7 @@ An API for managing employee in an organization.
 
 ### Deployed App
 
-https://employee-management-system-ali.herokuapp.com/employee/api/v1
+https://employee-system.onrender.com/api/v1/home
 
 #### Endpoint Details
 
