@@ -1,6 +1,6 @@
 {
   "name": "employee-system",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Employee management system",
   "main": "app.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.17.2",
     "joi": "^17.6.0",
-    "pg": "^8.7.3"
+    "pg": "^8.9.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
