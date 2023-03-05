@@ -1,12 +1,12 @@
 {
   "name": "employee-system",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Employee management system",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon --legacy-watch"
+    "start": "knex migrate:latest && node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "Mohd Ali Ansari",
   "license": "ISC",
@@ -14,6 +14,8 @@
     "dotenv": "^16.0.1",
     "express": "^4.17.2",
     "joi": "^17.6.0",
+    "knex": "^2.4.2",
+    "morgan": "^1.10.0",
     "pg": "^8.9.0"
   },
   "devDependencies": {
