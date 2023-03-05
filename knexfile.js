@@ -22,7 +22,7 @@ module.exports = {
     },
   },
   production: {
-    client: "postgresql",
+    client: "cockroachdb",
     connection: {
       user: process.env.DATABASE_USERNAME,
       host: process.env.DATABASE_HOST,
