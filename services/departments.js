@@ -25,19 +25,6 @@ const selectOneQuery = (name, callback) => {
   );
 };
 
-const selectDeptById = (id, callback) => {
-  pool.query(
-    `select * from organisation.departments where id='${id}';`,
-    (err, res) => {
-      if (err) {
-        callback(err);
-      } else {
-        callback(res.rows);
-      }
-    }
-  );
-};
-
 const insertValueQuery = (data, callback) => {
   pool.query(
     `insert into organisation.departments (name, teamCount, createdAt) values ('${data.name}',${data.teamCount},'${data.createdAt}');`,
@@ -80,7 +67,6 @@ const deleteValueQuery = (name, callback) => {
 module.exports = {
   selectAllQuery: selectAllQuery,
   selectOneQuery: selectOneQuery,
-  selectDeptById: selectDeptById,
   insertValueQuery: insertValueQuery,
   updateDeptTeamCount: updateDeptTeamCount,
   deleteValueQuery: deleteValueQuery,

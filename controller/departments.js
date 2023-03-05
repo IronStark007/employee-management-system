@@ -19,11 +19,7 @@ const getDepartmentByName = (req, res, next) => {
     if (result instanceof Error) {
       next(result);
     } else if (result.length === 0) {
-      next(
-        new DepartmentNotFoundError(
-          `Department with name: ${req.params.name} does not exist`
-        )
-      );
+      next(new DepartmentNotFoundError(req.params.name));
     } else {
       res.send(result[0]);
     }
@@ -55,11 +51,7 @@ const updateDepartmentByName = (req, res, next) => {
     if (result instanceof Error) {
       next(result);
     } else if (result.length == 0) {
-      next(
-        new DepartmentNotFoundError(
-          `Department with name: ${req.params.name} does not exist`
-        )
-      );
+      next(new DepartmentNotFoundError(req.params.name));
     } else {
       db.updateDeptTeamCount(req.params.name, req.validateData, (result) => {
         if (result instanceof Error) {
@@ -79,18 +71,14 @@ const deleteDepartmentByName = (req, res, next) => {
     if (result instanceof Error) {
       next(result);
     } else if (result.length == 0) {
-      next(
-        new DepartmentNotFoundError(
-          `Department with name: ${req.params.name} does not exist`
-        )
-      );
+      next(new DepartmentNotFoundError(req.params.name));
     } else {
       db.deleteValueQuery(req.params.name, (result) => {
         if (result instanceof Error) {
           next(result);
         } else {
           res.send({
-            message: `Department with name '${req.params.name}' deleted`,
+            message: `Department with name: ${req.params.name} deleted`,
           });
         }
       });

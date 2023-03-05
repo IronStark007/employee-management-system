@@ -13,14 +13,14 @@ class EmployeeNotFoundError extends AppError {
 }
 
 class DepartmentNotFoundError extends AppError {
-  constructor(message) {
-    super(message, 404);
+  constructor(name) {
+    super(`Department with name: ${name} not found`, 404);
   }
 }
 
 class TeamNotFoundError extends AppError {
-  constructor(message) {
-    super(message, 404);
+  constructor(name) {
+    super(`Team with name: ${name} does not exist`, 404);
   }
 }
 

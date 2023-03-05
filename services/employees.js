@@ -25,7 +25,7 @@ const selectOneQuery = (username, callback) => {
 
 const insertValueQuery = (data, callback) => {
   pool.query(
-    `insert into organisation.employees (departmentId, teamId, fName, lName, username, isTeamLead, joiningDate, createdAt) values (${data.departmentId}, ${data.teamId},'${data.fName}','${data.lName}','${data.username}', ${data.isTeamLead}, '${data.joiningDate}', '${data.createdAt}');`,
+    `insert into organisation.employees (departmentName, teamName, fName, lName, username, isTeamLead, joiningDate, createdAt) values ('${data.departmentName}', '${data.teamName}','${data.fName}','${data.lName}','${data.username}', ${data.isTeamLead}, '${data.joiningDate}', '${data.createdAt}');`,
     (err, res) => {
       if (err) {
         console.log(err);
@@ -39,7 +39,7 @@ const insertValueQuery = (data, callback) => {
 
 const updateValueQuery = (username, data, callback) => {
   pool.query(
-    `update organisation.employees set departmentId=${data.departmentId}, teamId=${data.teamId}, fName='${data.fName}', lName='${data.lName}', isTeamLead=${data.isTeamLead}, modifiedAt='${data.modifiedAt}' where username='${username}';`,
+    `update organisation.employees set departmentName='${data.departmentName}', teamName='${data.teamName}', fName='${data.fName}', lName='${data.lName}', isTeamLead=${data.isTeamLead}, modifiedAt='${data.modifiedAt}' where username='${username}';`,
     (err, res) => {
       if (err) {
         callback(err);

@@ -31,25 +31,17 @@ const getOneEmployeeByName = (req, res, next) => {
 };
 
 const createEmployee = (req, res, next) => {
-  deptDb.selectDeptById(req.validateData.departmentId, (dept) => {
+  deptDb.selectOneQuery(req.validateData.departmentName, (dept) => {
     if (dept instanceof Error) {
       next(dept);
     } else if (dept.length == 0) {
-      next(
-        new DepartmentNotFoundError(
-          `Department with id: ${req.validateData.departmentId} not found`
-        )
-      );
+      next(new DepartmentNotFoundError(req.validateData.departmentName));
     } else {
-      teamDb.selectTeamById(req.validateData.teamId, (team) => {
+      teamDb.selectOneQuery(req.validateData.teamName, (team) => {
         if (team instanceof Error) {
           next(team);
         } else if (team.length == 0) {
-          next(
-            new TeamNotFoundError(
-              `Team with id: ${req.validateData.teamId} not found`
-            )
-          );
+          next(new TeamNotFoundError(req.validateData.teamName));
         } else {
           db.selectOneQuery(req.validateData.username, (result) => {
             if (result instanceof Error) {
@@ -81,25 +73,17 @@ const updateEmployee = (req, res, next) => {
     } else if (result.length === 0) {
       next(new EmployeeNotFoundError(req.params.username));
     } else {
-      deptDb.selectDeptById(req.validateData.departmentId, (dept) => {
+      deptDb.selectOneQuery(req.validateData.departmentName, (dept) => {
         if (dept instanceof Error) {
           next(dept);
         } else if (dept.length == 0) {
-          next(
-            new DepartmentNotFoundError(
-              `Department with id: ${req.validateData.departmentId} not found`
-            )
-          );
+          next(new DepartmentNotFoundError(req.validateData.departmentName));
         } else {
-          teamDb.selectTeamById(req.validateData.teamId, (team) => {
+          teamDb.selectOneQuery(req.validateData.teamName, (team) => {
             if (team instanceof Error) {
               next(team);
             } else if (team.length == 0) {
-              next(
-                new TeamNotFoundError(
-                  `Team with id: ${req.validateData.teamId} not found`
-                )
-              );
+              next(new TeamNotFoundError(req.validateData.teamName));
             } else {
               db.updateValueQuery(
                 req.params.username,

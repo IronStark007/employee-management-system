@@ -1,8 +1,8 @@
 const joi = require("joi");
 
 const employeeSchema = joi.object().keys({
-  departmentId: joi.number().required(),
-  teamId: joi.number().required(),
+  departmentName: joi.string().required(),
+  teamName: joi.string().required(),
   fName: joi.string().max(128).required(),
   lName: joi.string().max(128).required(),
   username: joi.string().max(128).required(),
@@ -12,8 +12,8 @@ const employeeSchema = joi.object().keys({
 });
 
 const employeeUpdateSchema = joi.object().keys({
-  departmentId: joi.number().required(),
-  teamId: joi.number().required(),
+  departmentName: joi.string().required(),
+  teamName: joi.string().required(),
   fName: joi.string().max(128).required(),
   lName: joi.string().max(128).required(),
   isTeamLead: joi.boolean().required(),

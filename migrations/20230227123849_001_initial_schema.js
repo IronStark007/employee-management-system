@@ -8,10 +8,10 @@ exports.up = async function (knex) {
     "CREATE TABLE IF NOT EXISTS organisation.departments (id serial PRIMARY KEY, name VARCHAR (128) UNIQUE NOT NULL, teamCount INT NOT NULL, createdAt DATE NOT NULL, modifiedAt DATE);"
   );
   await knex.raw(
-    "CREATE TABLE IF NOT EXISTS organisation.teams (id serial PRIMARY KEY, name VARCHAR (128) UNIQUE NOT NULL, departmentId INT NOT NULL, teamHead VARCHAR (128) NOT NULL, createdAt DATE NOT NULL, modifiedAt DATE, CONSTRAINT fk_departmentId FOREIGN KEY(departmentId) REFERENCES organisation.departments(id));"
+    "CREATE TABLE IF NOT EXISTS organisation.teams (id serial PRIMARY KEY, name VARCHAR (128) UNIQUE NOT NULL, departmentName VARCHAR (128) NOT NULL, createdAt DATE NOT NULL, modifiedAt DATE, CONSTRAINT fk_departmentName FOREIGN KEY(departmentName) REFERENCES organisation.departments(name));"
   );
   await knex.raw(
-    "CREATE TABLE IF NOT EXISTS organisation.employees (id serial PRIMARY KEY,departmentId INT NOT NULL, teamId INT NOT NULL, fName VARCHAR (128) NOT NULL, lName VARCHAR (128) NOT NULL, username VARCHAR(128) UNIQUE NOT NULL, isTeamLead boolean NOT NULL, joiningDate DATE NOT NULL, createdAt DATE NOT NULL, modifiedAt DATE, CONSTRAINT fk_departmentId FOREIGN KEY(departmentId) REFERENCES organisation.departments(id), CONSTRAINT fk_teamId FOREIGN KEY(teamId) REFERENCES organisation.teams(id));"
+    "CREATE TABLE IF NOT EXISTS organisation.employees (id serial PRIMARY KEY, departmentName VARCHAR (128) NOT NULL, teamName VARCHAR (128) NOT NULL, fName VARCHAR (128) NOT NULL, lName VARCHAR (128) NOT NULL, username VARCHAR(128) UNIQUE NOT NULL, isTeamLead boolean NOT NULL, joiningDate DATE NOT NULL, createdAt DATE NOT NULL, modifiedAt DATE, CONSTRAINT fk_departmentName FOREIGN KEY(departmentName) REFERENCES organisation.departments(name), CONSTRAINT fk_teamName FOREIGN KEY(teamName) REFERENCES organisation.teams(name));"
   );
 };
 
